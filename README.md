@@ -1,8 +1,12 @@
 # wc-mac-input
+[![NPM](https://nodei.co/npm/wc-mac-input.png?mini=true)](https://www.npmjs.com/package/wc-mac-input)
+
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/yishiashia/wc-mac-input)
+
 
 Mac address input web component.
 
-[![NPM](https://nodei.co/npm/wc-mac-input.png?mini=true)](https://www.npmjs.com/package/wc-mac-input)
+
 
 ## Install
 
