@@ -40,7 +40,8 @@ export default [
     input: 'index.js',
     output: {
       file: 'dist/mac-input.js',
-      format: 'iife',
+      format: 'umd',
+      name: 'MacInput',
       inlineDynamicImports: true
     },
     plugins: plugins

@@ -1,6 +1,6 @@
 {
   "name": "wc-mac-input",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Mac address input WebComponent",
   "main": "./dist/mac-input.js",
   "scripts": {

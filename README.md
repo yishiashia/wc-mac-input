@@ -29,10 +29,10 @@ The demo page: https://yishiashia.github.io/mac-input.html
 ## Usage
 
 If you want to customize this web component, you can import the library and 
-implement your new class by extend `wcMacInput`.
+implement your new class by extend `MacInput`.
 
 ```js
-import MacInput from "wcMacInput";
+import MacInput from "wc-mac-input";
 
 class customizedMacInput extends MacInput {
     // override here
