@@ -1,6 +1,6 @@
 {
   "name": "wc-mac-input",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Mac address input WebComponent",
   "main": "./dist/mac-input.js",
   "scripts": {
@@ -23,7 +23,6 @@
     "url": "https://github.com/yishiashia/wc-mac-input/issues"
   },
   "homepage": "https://github.com/yishiashia/wc-mac-input#readme",
-  "types": "./dist/mac-input.js",
   "files": [
     "dist"
   ],
