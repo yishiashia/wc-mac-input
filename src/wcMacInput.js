@@ -35,7 +35,6 @@ export default class MacInput extends HTMLElement {
     this.realInput = document.createElement('input')
     this.realInput.name = this.attributes.name.value
     this.realInput.type = 'hidden'
-    this.realInput.id = 'mac-real-input'
     this.realInput.value = this.value_
     this.appendChild(this.realInput)
 
