@@ -32,7 +32,7 @@ const plugins = [
       /\/core-js\//
     ]
   }),
-  //terser(),
+  terser(),
 ]
 
 export default [

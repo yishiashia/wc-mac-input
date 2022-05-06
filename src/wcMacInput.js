@@ -1,3 +1,7 @@
+import '@webcomponents/webcomponentsjs/webcomponents-bundle'
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'
+import '@webcomponents/custom-elements/custom-elements.min.js'
+
 const validChar = [
   'a', 'b', 'c', 'd', 'e', 'f',
   'A', 'B', 'C', 'D', 'E', 'F',
@@ -5,8 +9,6 @@ const validChar = [
 ]
 
 export default class MacInput extends HTMLElement {
-  static formAssociated = true
-
   constructor () {
     super()
 
@@ -18,9 +20,7 @@ export default class MacInput extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.innerHTML = this.template()
 
-    // Get access to the internal form control APIs
-    this.internals_ = this.attachInternals()
-    // internal value for this control
+    this.realInput = null
     this.value_ = '00-00-00-00-00-00'
   }
 
@@ -31,6 +31,14 @@ export default class MacInput extends HTMLElement {
     this.inputSlots[3] = this.shadowRoot.querySelector('input:nth-child(4)')
     this.inputSlots[4] = this.shadowRoot.querySelector('input:nth-child(5)')
     this.inputSlots[5] = this.shadowRoot.querySelector('input:nth-child(6)')
+
+    this.realInput = document.createElement('input')
+    this.realInput.name = this.attributes.name.value
+    this.realInput.type = 'hidden'
+    this.realInput.id = 'mac-real-input'
+    this.realInput.value = this.value_
+    this.appendChild(this.realInput)
+
     this.addEventListener('click', this._onClick)
     const macInputElement = this
     this._onKeyInput = this._onKeyInput.bind(macInputElement)
@@ -50,24 +58,6 @@ export default class MacInput extends HTMLElement {
     })
   }
 
-  // Form controls usually expose a "value" property
-  get value () {
-    return this.value_
-  }
-
-  set value (v) {
-    this.value_ = v
-  }
-
-  get form () { return this.internals_.form }
-  get type () { return this.localName }
-  get validity () { return this.internals_.validity }
-  get validationMessage () { return this.internals_.validationMessage }
-  get willValidate () { return this.internals_.willValidate }
-
-  checkValidity () { return this.internals_.checkValidity() }
-  reportValidity () { return this.internals_.reportValidity() }
-
   _onClick (e) {
     setTimeout(() => {
       const inputIndex = Math.floor(this.macStr.join('').length / 2)
@@ -83,7 +73,6 @@ export default class MacInput extends HTMLElement {
     if (!isNaN(keyin)) {
       if (keyin === 8 && e.target.value === '') {
         if (inputIndex > 0) {
-          // console.log(inputIndex);
           this.inputSlots[inputIndex - 1].focus()
           this.inputSlots[inputIndex - 1].dispatchEvent(new KeyboardEvent('keypress', { code: 8 }))
         }
@@ -119,7 +108,9 @@ export default class MacInput extends HTMLElement {
       this.fireEvent('onchange')
     }
     this.value_ = this.macStr.join('-').toUpperCase()
-    this.internals_.setFormValue(this.value_)
+    if (this.realInput) {
+      this.realInput.value = this.value_
+    }
   }
 
   template () {
@@ -134,7 +125,6 @@ export default class MacInput extends HTMLElement {
           <input type="text" maxlength="2"> -
           <input type="text" maxlength="2"> -
           <input type="text" maxlength="2">
-          <input type="hidden" name="" />
         </div>
       `
   }
