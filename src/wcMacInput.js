@@ -100,8 +100,7 @@ export default class MacInput extends HTMLElement {
       }
     }
     if ('createEvent' in document) {
-      const evt = document.createEvent('HTMLEvents')
-      evt.initEvent('change', false, true)
+      const evt = new Event("change", {"bubbles": false, "cancelable": true});
       this.dispatchEvent(evt)
     } else {
       this.fireEvent('onchange')

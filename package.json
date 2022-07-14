@@ -1,11 +1,12 @@
 {
   "name": "wc-mac-input",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Mac address input WebComponent",
   "main": "./dist/mac-input.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "lint": "eslint 'src/wcMacInput.js'",
     "test": "jest --coverage"
   },
   "repository": {
