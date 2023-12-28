@@ -25,7 +25,7 @@ Mac address input web component.
 ```
 
 ## Demo page
-The demo page: https://yishiashia.github.io/mac-input.html
+The demo page: https://yishiashia.github.io/wc-mac-input/
 ## Usage
 
 If you want to customize this web component, you can import the library and 
